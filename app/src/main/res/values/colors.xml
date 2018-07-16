@@ -11,11 +11,13 @@
         <color name="light_sage">#ffb8e986</color>
         <color name="banana_yellow">#fff9ec4f</color>
 
-    <color name="color_superhappy">#F8EC50</color>
-    <color name="color_happy">#b8e986</color>
-    <color name="color_normal">#86B3E6</color>
-    <color name="color_disappointed">#9B9B9B</color>
-    <color name="color_sad">#DE3C50</color>
-    <color name="color_empty">#424242</color>
+
+
+        <color name="color_superhappy">#F8EC50</color>
+        <color name="color_happy">#b8e986</color>
+        <color name="color_normal">#86B3E6</color>
+        <color name="color_disappointed">#9B9B9B</color>
+        <color name="color_sad">#DE3C50</color>
+        <color name="color_empty">#424242</color>
 
 </resources>
