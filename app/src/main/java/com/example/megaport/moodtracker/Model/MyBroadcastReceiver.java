@@ -3,12 +3,9 @@ package com.example.megaport.moodtracker.Model;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import com.example.megaport.moodtracker.R;
-
 import static com.example.megaport.moodtracker.Controllers.MainActivity.moodData;
 import static com.example.megaport.moodtracker.Controllers.MainActivity.tableBackgroundColor;
-
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
 

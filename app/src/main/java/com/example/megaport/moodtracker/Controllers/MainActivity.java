@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 // findViewById ------------------------------------------------------------
         btnAddMessage = findViewById(R.id.btn_add_message);
         btnHistory = findViewById(R.id.btn_history);
+
+
 // findViewById ------------------------------------------------------------
 
         if (SharedPreferencesUtils.containsMood(this)) {
@@ -81,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     // When we swipe, this method (up = mood++ or down = mood--) plays a sound and change imgSmiley and BackgroundColor depending on mood value.
+
+    @SuppressLint("ClickableViewAccessibility")
     public void swipe() {
         layout = findViewById(R.id.main_activity_layout);
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         @SuppressLint("InflateParams")
-        // https://possiblemobile.com/2013/05/layout-inflation-as-intended/
+
         final View dialogView = inflater.inflate(R.layout.popup_add_message, null);
         dialogBuilder.setView(dialogView);
 
@@ -180,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         PendingIntent pendingIntent;
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.add(Calendar.DATE, 1);
