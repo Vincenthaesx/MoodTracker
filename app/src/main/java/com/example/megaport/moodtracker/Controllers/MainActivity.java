@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         PendingIntent pendingIntent;
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.add(Calendar.DATE, 1);
