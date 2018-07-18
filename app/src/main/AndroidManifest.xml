@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controllers.History"></activity>
+
+        <receiver android:name=".Model.MyBroadcastReceiver" />
     </application>
 
 </manifest>

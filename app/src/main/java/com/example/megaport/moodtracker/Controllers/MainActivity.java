@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static int mood;
 
     // Variable View
-    ImageButton btnHistory;
     ImageButton btnAddMessage;
     RelativeLayout layout;
 
@@ -44,7 +43,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer mediaPlayer;
 
     // ArrayList
-    public static ArrayList<MoodData> moodData = new ArrayList<>();
+    public static ArrayList<MoodData> moodData;
+
+    static {
+        moodData = new ArrayList<>();
+    }
 
     // Variable table
     public static final int tableImgSmiley[] = {R.drawable.smileysad, R.drawable.smileydisappointed, R.drawable.smileynormal, R.drawable.smileyhappy, R.drawable.smileysuperhappy};
@@ -58,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 // findViewById ------------------------------------------------------------
         btnAddMessage = findViewById(R.id.btn_add_message);
-        btnHistory = findViewById(R.id.btn_history);
-
+        ImageButton btnHistory = findViewById(R.id.btn_history);
 
 // findViewById ------------------------------------------------------------
 
@@ -184,18 +186,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         PendingIntent pendingIntent;
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.DATE, 1);
+        calendar.set(2018, 6, 18, 23, 59);
+
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, MyBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-        if (alarmManager != null) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
     }
 }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
-
 import com.example.megaport.moodtracker.Model.SharedPreferencesUtils;
 import com.example.megaport.moodtracker.R;
 import com.example.megaport.moodtracker.View.MyAdapter;

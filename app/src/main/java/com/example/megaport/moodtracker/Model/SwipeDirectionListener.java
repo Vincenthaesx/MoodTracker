@@ -1,5 +1,6 @@
 package com.example.megaport.moodtracker.Model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -10,10 +11,11 @@ public class SwipeDirectionListener implements View.OnTouchListener {
 
     private final GestureDetector gestureDetector;
 
-    public SwipeDirectionListener(Context ctx) {
+    protected SwipeDirectionListener(Context ctx) {
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return gestureDetector.onTouchEvent(event);

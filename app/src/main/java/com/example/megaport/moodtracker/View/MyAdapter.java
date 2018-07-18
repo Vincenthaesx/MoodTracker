@@ -1,5 +1,6 @@
 package com.example.megaport.moodtracker.View;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.megaport.moodtracker.Model.MoodData;
 import com.example.megaport.moodtracker.R;
-
 import java.util.List;
 
 
@@ -25,14 +24,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HistoryViewHolder>
     }
 
 
+    @NonNull
     @Override
-    public HistoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
         return new HistoryViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(HistoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         final MoodData item = mdatas.get(position);
 
 
