@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 // findViewById ------------------------------------------------------------
 
+
+        SharedPreferencesUtils.saveMood(MainActivity.this, mood);
+
+
         if (SharedPreferencesUtils.containsMood(this)) {
             mood = SharedPreferencesUtils.getMood(this);
         } else {
@@ -75,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnAddMessage.setOnClickListener(this);
         btnHistory.setOnClickListener(this);
-
-        SharedPreferencesUtils.saveMood(MainActivity.this, mood);
 
         swipe();
 
@@ -196,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(context, MyBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
     }
 }

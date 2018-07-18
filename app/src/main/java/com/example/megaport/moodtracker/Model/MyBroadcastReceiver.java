@@ -19,7 +19,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             MainActivity.moodData.add(new MoodData(" ", SharedPreferencesUtils.getMessage(context), tableBackgroundColor[SharedPreferencesUtils.getMood(context)], tableWidthMood[SharedPreferencesUtils.getMood(context)]));
         } else {
 
-            MainActivity.moodData.add(new MoodData(" ", "Aucune humeur enregistré", R.color.color_empty, SharedPreferencesUtils.getWidth(context)));
+            MainActivity.moodData.add(new MoodData(" ", " ", R.color.color_happy, SharedPreferencesUtils.getWidth(context)));
         }
 
         SharedPreferencesUtils.saveArrayList(context);
