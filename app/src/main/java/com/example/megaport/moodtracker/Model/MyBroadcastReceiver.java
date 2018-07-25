@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.example.megaport.moodtracker.Controllers.MainActivity;
-import com.example.megaport.moodtracker.R;
 import static com.example.megaport.moodtracker.Controllers.MainActivity.tableBackgroundColor;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
@@ -19,7 +18,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             MainActivity.moodData.add(new MoodData(" ", SharedPreferencesUtils.getMessage(context), tableBackgroundColor[SharedPreferencesUtils.getMood(context)], tableWidthMood[SharedPreferencesUtils.getMood(context)]));
         } else {
 
-            MainActivity.moodData.add(new MoodData(" ", " ", R.color.color_happy, SharedPreferencesUtils.getWidth(context)));
+            MainActivity.moodData.add(new MoodData(" ", "Aucunes notes ajoutées", tableBackgroundColor[SharedPreferencesUtils.getMood(context)], SharedPreferencesUtils.getWidth(context)));
         }
 
         SharedPreferencesUtils.saveArrayList(context);
@@ -28,8 +27,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
     // resets mood and message in sharedPreferences
     public void resetMood(Context context) {
-        SharedPreferencesUtils.removeMood(context, SharedPreferencesUtils.MY_FILE, SharedPreferencesUtils.KEY_MOOD);
-        SharedPreferencesUtils.removeMood(context, SharedPreferencesUtils.MY_FILE, SharedPreferencesUtils.KEY_MESSAGE);
+        SharedPreferencesUtils.removeMood(context, SharedPreferencesUtils.KEY_MOOD);
+        SharedPreferencesUtils.removeMood(context, SharedPreferencesUtils.KEY_MESSAGE);
     }
 
 }

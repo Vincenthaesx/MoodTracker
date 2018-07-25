@@ -32,17 +32,23 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Variable current
 
-    public static int mood;
+    private int currentMood;
+    private String currentMessage;
+
 
     // Variable View
+
     ImageButton btnAddMessage;
     RelativeLayout layout;
 
     // Variable sound
+
     MediaPlayer mediaPlayer;
 
     // ArrayList
+
     public static ArrayList<MoodData> moodData;
 
     static {
@@ -65,16 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 // findViewById ------------------------------------------------------------
 
-
-        SharedPreferencesUtils.saveMood(MainActivity.this, mood);
-
-
-        if (SharedPreferencesUtils.containsMood(this)) {
-            mood = SharedPreferencesUtils.getMood(this);
-        } else {
-            mood = 3;
-        }
-
         initializeData();
 
         btnAddMessage.setOnClickListener(this);
@@ -82,9 +78,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         swipe();
 
-        AlarmMidnight(this);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setContentView(R.layout.activity_main);
+
+        SharedPreferencesUtils.saveMessage(MainActivity.this, currentMessage);
+        SharedPreferencesUtils.saveMood(MainActivity.this, currentMood);
+
+        if (SharedPreferencesUtils.containsMood(this)) {
+            currentMood = SharedPreferencesUtils.getMood(this);
+        } else {
+            currentMood = 3;
+        }
+
+        AlarmMidnight(this);
+    }
 
     // When we swipe, this method (up = mood++ or down = mood--) plays a sound and change imgSmiley and BackgroundColor depending on mood value.
 
@@ -99,25 +110,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             public void onUpSwipe() {
                 mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.up);
-                if (mood != 4) {
-                    mood++;
-                    SharedPreferencesUtils.saveMood(MainActivity.this, mood);
+                if (currentMood != 4) {
+                    currentMood++;
+                    SharedPreferencesUtils.saveMood(MainActivity.this, currentMood);
                     mediaPlayer.start();
                 }
-                imgSmiley.setImageResource(tableImgSmiley[mood]);
-                layout.setBackgroundResource(tableBackgroundColor[mood]);
+                imgSmiley.setImageResource(tableImgSmiley[currentMood]);
+                layout.setBackgroundResource(tableBackgroundColor[currentMood]);
 
             }
 
             public void onDownSwipe() {
                 mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.down);
-                if (mood != 0) {
-                    mood--;
-                    SharedPreferencesUtils.saveMood(MainActivity.this, mood);
+                if (currentMood != 0) {
+                    currentMood--;
+                    SharedPreferencesUtils.saveMood(MainActivity.this, currentMood);
                     mediaPlayer.start();
                 }
-                imgSmiley.setImageResource(tableImgSmiley[mood]);
-                layout.setBackgroundResource(tableBackgroundColor[mood]);
+                imgSmiley.setImageResource(tableImgSmiley[currentMood]);
+                layout.setBackgroundResource(tableBackgroundColor[currentMood]);
 
             }
 
@@ -136,11 +147,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialogBuilder.setView(dialogView);
 
         final EditText editTextMessage = dialogView.findViewById(R.id.edittext_message);
+        editTextMessage.setText(currentMessage);
 
         dialogBuilder.setTitle("Ajouter une note");
         dialogBuilder.setPositiveButton("valider", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                SharedPreferencesUtils.saveMessage(MainActivity.this, editTextMessage.getText().toString());
+
+
             }
         });
         dialogBuilder.setNegativeButton("annuler", new DialogInterface.OnClickListener() {
@@ -177,8 +190,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         float myMetrics = metrics.widthPixels;
         SharedPreferencesUtils.saveWidth(MainActivity.this, myMetrics);
 
-
-
     }
 
     //This method executes the code in MyBroadcastReceiver at midnight
@@ -187,8 +198,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlarmManager alarmManager;
         PendingIntent pendingIntent;
 
+        SharedPreferencesUtils.saveMessage(MainActivity.this, currentMessage);
+        SharedPreferencesUtils.saveMood(MainActivity.this, currentMood);
+
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, 6, 18, 23, 59);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
 
         if (Calendar.getInstance().after(calendar)) {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -198,7 +213,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(context, MyBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
+
 }
