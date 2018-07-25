@@ -26,7 +26,7 @@ public class SharedPreferencesUtils {
     }
 
 
-    static String getMessage(Context context) {
+    public static String getMessage(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(KEY_MESSAGE, "");
     }
@@ -44,6 +44,7 @@ public class SharedPreferencesUtils {
         return sharedPreferences.getInt(KEY_MOOD, 0);
     }
 
+
     static void removeMood(Context context, String key) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         android.content.SharedPreferences.Editor editor = preferences.edit();
@@ -54,6 +55,11 @@ public class SharedPreferencesUtils {
     public static boolean containsMood(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.contains(KEY_MOOD);
+    }
+
+    public static boolean containsMessage(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.contains(KEY_MESSAGE);
     }
 
 

@@ -153,6 +153,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialogBuilder.setPositiveButton("valider", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
+                SharedPreferencesUtils.saveMessage(MainActivity.this, currentMessage);
+
+                if(SharedPreferencesUtils.containsMessage(MainActivity.this)){
+                    currentMessage = SharedPreferencesUtils.getMessage(MainActivity.this );
+                }
 
             }
         });
