@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff00796b</color>
+    <color name="colorPrimary">#181818</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
 
     <!-- Background colors used for the different moods -->
-        <color name="faded_red">#ffde3c50</color>
-        <color name="warm_grey">#ff9b9b9b</color>
-        <color name="cornflower_blue_65">#a5468ad9</color>
-        <color name="light_sage">#ffb8e986</color>
-        <color name="banana_yellow">#fff9ec4f</color>
-
-
-
-        <color name="color_superhappy">#F8EC50</color>
-        <color name="color_happy">#b8e986</color>
-        <color name="color_normal">#86B3E6</color>
-        <color name="color_disappointed">#9B9B9B</color>
-        <color name="color_sad">#DE3C50</color>
-        <color name="color_empty">#424242</color>
-
+    <color name="faded_red">#ffde3c50</color>
+    <color name="warm_grey">#ff9b9b9b</color>
+    <color name="cornflower_blue_65">#a5468ad9</color>
+    <color name="light_sage">#ffb8e986</color>
+    <color name="banana_yellow">#fff9ec4f</color>
 </resources>
