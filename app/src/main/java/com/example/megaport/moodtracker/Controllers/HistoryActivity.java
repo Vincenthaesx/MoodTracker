@@ -29,7 +29,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     //variable tab
 
     private int[] tabBackgroundColor = {R.color.faded_red, R.color.warm_grey, R.color.cornflower_blue_65, R.color.light_sage, R.color.banana_yellow};
-    private String[] tabDayView = {"yesterday", "tow days ago", "three days ago", "four days ago", "five days ago", "six days ago", "a week ago" };
+    private String[] tabDayView = {"Hier", "Il y a deux jours", "Il y a trois jours", "Il y a quatre jours", "Il y a cinq jours", "Il y a six jours", "il y a sept jours" };
     private RelativeLayout[] tabLayoutClass;
     private TextView[] tabTextClass;
     private ImageView[] tabImageClass;
@@ -112,6 +112,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
 
     //calculate the Layout size for the different Moods (horizontal)
+
     public int getsizeX(int moodNumber){
 
         DisplayMetrics metrics = new DisplayMetrics();

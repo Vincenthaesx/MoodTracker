@@ -36,12 +36,16 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
 
     private static final String TAG = "activity_main";
+
     private RelativeLayout mBackground;
     private ImageView mImage;
     public ImageButton mnoteIcone;
+
     private GestureDetector gDetector;
+
     private int moodNumber = 3;
     private String noteUser = "";
+
     private SharedPreferences mPreferences;
     private MoodsSave userMoodSave = new MoodsSave();
 
@@ -81,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
         AlarmAtMidnight();
 
-        String prefTester = mPreferences.getString("PrefMoodUserSave", null);
+        String preferencesTest = mPreferences.getString("PrefMoodUserSave", null);
 
-        if (prefTester != null || userMoodSave.getMoodsNumber() == -1) loadMood();
+        if (preferencesTest != null || userMoodSave.getMoodsNumber() == -1) loadMood();
 
         mBackground.setBackgroundColor(getResources().getColor(tabBackgroundColor[moodNumber]));
         mImage.setImageResource(image[moodNumber]);
@@ -155,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     }
 
-    //save object Mood ,Preferences
+    //save object Mood at preferences
 
     protected void saveMood(){
 
@@ -169,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     }
 
-    //load object Mood ,Preferences
+    //load object Mood at preferences
 
     protected void loadMood(){
 
@@ -209,11 +213,13 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
 
             //create area text input
+
             final EditText input = new EditText(MainActivity.this);
             input.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
             builder.setView(input);
 
             //save comment user
+
             builder.setPositiveButton("VALIDER", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -325,6 +331,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }
 
         //if user go down
+
         else if(motionEvent.getY() > motionEvent1.getY()){
 
             //if there are others moods show next moods
