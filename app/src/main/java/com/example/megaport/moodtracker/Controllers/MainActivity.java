@@ -114,14 +114,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         if (Build.VERSION.SDK_INT > 19) {
 
             assert manager != null;
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            manager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent );
             Log.i(TAG, "startAlarm: 1 ");
         }
 
         else {
 
             assert manager != null;
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent );
             Log.i(TAG, "startAlarm: 2");
         }
     }
