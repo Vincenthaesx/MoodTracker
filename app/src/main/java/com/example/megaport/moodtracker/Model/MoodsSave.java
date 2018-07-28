@@ -1,6 +1,10 @@
 package com.example.megaport.moodtracker.Model;
 
+//created by vincent, 25/05/2018
+
 public class MoodsSave {
+
+    //variable
 
     private int moodsNumber = 3;
     private String comment = null;

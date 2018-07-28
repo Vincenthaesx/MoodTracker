@@ -12,10 +12,11 @@ import com.google.gson.Gson;
 import static android.content.ContentValues.TAG;
 
 
-public class AlarmeMoodsClock extends BroadcastReceiver {
+public class AlarmMoods extends BroadcastReceiver {
 
 
     //mood save in the history and reset mood for MainActivity
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -41,6 +42,7 @@ public class AlarmeMoodsClock extends BroadcastReceiver {
         resetMood(context);
 
         //restart MainActivity
+
         if (MainActivity.getInstance() != null) {
             MainActivity.getInstance().onCreate(null);
         }

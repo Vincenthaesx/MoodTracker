@@ -2,11 +2,13 @@ package com.example.megaport.moodtracker.Model;
 
 import java.util.ArrayList;
 
+//created by vincent, 26/07/2018
+
 public class History {
 
     private ArrayList<MoodsSave> historyList = new ArrayList<>();
 
-    //constructeur
+    //constructor
     public History() {
 
     }

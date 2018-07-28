@@ -17,10 +17,17 @@ import com.example.megaport.moodtracker.Model.History;
 import com.example.megaport.moodtracker.R;
 import com.google.gson.Gson;
 
+//Created by vincent, 26/07/2018
+
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener{
+
+    //variable
 
     private int i = 0;
     private History history;
+
+    //variable tab
+
     private int[] tabBackgroundColor = {R.color.faded_red, R.color.warm_grey, R.color.cornflower_blue_65, R.color.light_sage, R.color.banana_yellow};
     private String[] tabDayView = {"yesterday", "tow days ago", "three days ago", "four days ago", "five days ago", "six days ago", "a week ago" };
     private RelativeLayout[] tabLayoutClass;

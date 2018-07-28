@@ -28,7 +28,11 @@ import com.google.gson.Gson;
 import java.util.Calendar;
 import java.util.Date;
 
+//created by vincent, 26/07/2018
+
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+
+    //variable
 
 
     private static final String TAG = "activity_main";
@@ -40,10 +44,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private String noteUser = "";
     private SharedPreferences mPreferences;
     private MoodsSave userMoodSave = new MoodsSave();
+
+    //variable tab
+
     private int[] tabBackgroundColor = {R.color.faded_red, R.color.warm_grey, R.color.cornflower_blue_65, R.color.light_sage, R.color.banana_yellow};
     private int[] image = {R.drawable.smileysad, R.drawable.smileydisappointed, R.drawable.smileynormal, R.drawable.smileyhappy, R.drawable.smileysuperhappy};
     private int[] tabSound = {R.raw.soundsad, R.raw.sounddisappointed, R.raw.soundnormal, R.raw.soundhappy, R.raw.soundsuperhappy};
     @SuppressLint("StaticFieldLeak")
+
+
     private static MainActivity mMainActivity;
 
 
@@ -70,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         mMainActivity = MainActivity.this;
 
 
-        startAlarm();
+        AlarmAtMidnight();
 
         String prefTester = mPreferences.getString("PrefMoodUserSave", null);
 
@@ -81,8 +90,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     }
 
-    //set alarm, call AlarmeMoodsClock.class
-    public void startAlarm() {
+    //Alarm to record at midnight in the history, use AlarmMoods.class
+
+    public void AlarmAtMidnight() {
 
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Date dat = new Date();
@@ -98,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             calendar.add(Calendar.DATE,1);
         }
 
-        Intent myIntent = new Intent(MainActivity.this, AlarmeMoodsClock.class);
+        Intent myIntent = new Intent(MainActivity.this, AlarmMoods.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast( this, 0, myIntent, 0 );
 
         if (Build.VERSION.SDK_INT > 19) {
@@ -124,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
 
     //save moodNumber for rotation
+
     @Override
     protected void onSaveInstanceState(Bundle stateSaved) {
         super.onSaveInstanceState(stateSaved);
@@ -133,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     //Restore moodNumber for rotation
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -144,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     //save object Mood ,Preferences
+
     protected void saveMood(){
 
         SharedPreferences.Editor prefsEditor = mPreferences.edit();
@@ -157,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     //load object Mood ,Preferences
+
     protected void loadMood(){
 
         Gson gson = new Gson();
@@ -170,7 +184,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     }
 
-    //change background color end change moods image
+    //change background color and change moods picture
+
     protected void setMoodsScreen(){
 
         mBackground.setBackgroundColor(getResources().getColor(tabBackgroundColor[moodNumber]));
@@ -180,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
 
     //detect click on the button note
+
     private View.OnClickListener mnoteClick = new View.OnClickListener() {
         public void onClick(View v) {
 
@@ -218,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             });
 
             //cancel, no saving comment
+
             builder.setNegativeButton("ANNULER", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -234,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
 
     //detect click on the button history
+
     private View.OnClickListener mhistoryClick = new View.OnClickListener() {
         public void onClick(View v) {
 
@@ -252,8 +270,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }
     };
 
-
+    //GestureDetector
     //detects the interaction between user and screen
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -288,6 +307,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     //detects user fling on screen
+
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
 
@@ -316,7 +336,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             }
         }
 
-        //play sound Moods
+        //play sound Moods by MediaPlayer
+
         MediaPlayer playMoods;
 
         playMoods = MediaPlayer.create(this, tabSound[moodNumber]);
