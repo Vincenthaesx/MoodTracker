@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private RelativeLayout mBackground;
     private ImageView mImage;
+
     public ImageButton mnoteIcone;
 
     private GestureDetector gDetector;
@@ -54,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private int[] tabBackgroundColor = {R.color.faded_red, R.color.warm_grey, R.color.cornflower_blue_65, R.color.light_sage, R.color.banana_yellow};
     private int[] image = {R.drawable.smileysad, R.drawable.smileydisappointed, R.drawable.smileynormal, R.drawable.smileyhappy, R.drawable.smileysuperhappy};
     private int[] tabSound = {R.raw.soundsad, R.raw.sounddisappointed, R.raw.soundnormal, R.raw.soundhappy, R.raw.soundsuperhappy};
+
+
     @SuppressLint("StaticFieldLeak")
-
-
     private static MainActivity mMainActivity;
 
 
@@ -64,13 +65,13 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Log.i(TAG, "onCreate: version android " + Build.VERSION.SDK_INT);
-
-
         if (savedInstanceState != null) {
             moodNumber = savedInstanceState.getInt("user_mood");
         }
+
+
+
 
         gDetector = new GestureDetector(this);
         mBackground = findViewById(R.id.background);
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         cal_now.setTime(dat);
 
         calendar.setTime(dat);
-        calendar.set(Calendar.HOUR_OF_DAY,23);
-        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.HOUR_OF_DAY,14);
+        calendar.set(Calendar.MINUTE,50);
 
         if(calendar.before(cal_now)){
             calendar.add(Calendar.DATE,1);
@@ -118,20 +119,19 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         if (Build.VERSION.SDK_INT > 19) {
 
             assert manager != null;
-            manager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent );
+            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
             Log.i(TAG, "startAlarm: 1 ");
         }
 
         else {
 
             assert manager != null;
-            manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent );
+            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
             Log.i(TAG, "startAlarm: 2");
         }
     }
 
     public static MainActivity getInstance(){
-
 
         return mMainActivity;
     }

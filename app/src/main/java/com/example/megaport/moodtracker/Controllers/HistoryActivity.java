@@ -124,7 +124,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
             case 0:
 
-                size = metrics.widthPixels - metrics.widthPixels * 80 / 100;
+                size = metrics.widthPixels - metrics.widthPixels * 80/100;
 
                 break;
 
@@ -152,8 +152,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
 
-
-
         }
 
 
@@ -164,7 +162,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
     //calculate the Layout size for vertical (screen / 7)
 
-    public int getsizeY(){
+    private int getsizeY(){
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
