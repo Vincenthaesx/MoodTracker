@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     public ImageButton mnoteIcone;
 
     private GestureDetector gDetector;
+    private PendingIntent pendingIntent;
 
     private int moodNumber = 3;
     private String noteUser = "";
@@ -106,27 +107,24 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         cal_now.setTime(dat);
 
         calendar.setTime(dat);
-        calendar.set(Calendar.HOUR_OF_DAY,14);
-        calendar.set(Calendar.MINUTE,50);
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND, 59);
 
         if(calendar.before(cal_now)){
             calendar.add(Calendar.DATE,1);
         }
 
         Intent myIntent = new Intent(MainActivity.this, AlarmMoods.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast( this, 0, myIntent, 0 );
+        pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
 
         if (Build.VERSION.SDK_INT > 19) {
-
-            assert manager != null;
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            manager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent);
             Log.i(TAG, "startAlarm: 1 ");
         }
 
         else {
-
-            assert manager != null;
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 300, pendingIntent);
             Log.i(TAG, "startAlarm: 2");
         }
     }
